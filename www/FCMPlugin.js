@@ -29,7 +29,11 @@ FCMPlugin.prototype.getToken = function( success, error ){
 // DEFAULT NOTIFICATION CALLBACK //
 FCMPlugin.prototype.onNotificationReceived = function(payload){
 	console.log("Received push notification")
-	console.log(payload)
+    // FCM + Donky improvements
+    if (payload.wasTapped && payload.act1 === "DeepLink" && payload.link1) {
+        handleOpenURL(payload.link1);
+    }
+    // FCM + Donky improvements
 }
 // DEFAULT TOKEN REFRESH CALLBACK //
 FCMPlugin.prototype.onTokenRefreshReceived = function(token){
